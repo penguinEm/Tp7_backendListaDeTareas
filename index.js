@@ -5,6 +5,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import routerTareas from "./src/routes/tareas.routes.js";
+import "./src/database/database.js"
 
 //! 1. CONFIGURAR UN PUERTO
 const app = express();
