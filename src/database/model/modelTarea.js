@@ -9,5 +9,5 @@ const tareaSchema = new Schema({
   },
 });
 
-const Tarea = mongoose.model("tara", tareaSchema);
+const Tarea = mongoose.model("tarea", tareaSchema);
 export default Tarea;
