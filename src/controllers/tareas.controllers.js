@@ -57,7 +57,26 @@ export const editarTareaDb = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      mensaje: "Error inesperado no se pudo editar el producto",
+      mensaje: "Error inesperado no se pudo editar la tarea",
+    });
+  }
+};
+
+//! DELETE de 1 tarea por id
+export const borrarTareaDb = async (req, res) => {
+  try {
+    const tareaBuscadaDb = await Tarea.findById(req.params.id);
+    if (tareaBuscadaDb === null) {
+      return res
+        .status(404)
+        .json({ mensaje: "No existe la tarea que trata de borrar" });
+    }
+    await Tarea.findByIdAndDelete(req.params.id);
+    res.status(200).json({ mensaje: "Tarea borrada correctamente" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      mensaje: "Error inesperado no se pudo editar la tarea",
     });
   }
 };

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  borrarTareaDb,
   crearTareaDb,
   editarTareaDb,
   listarTareasDb,
@@ -8,6 +9,10 @@ import {
 const router = Router();
 
 router.route("/tareas").get(listarTareasDb).post(crearTareaDb);
-router.route("/tareas/:id").get(tareaBuscadaDb). put(editarTareaDb)
+router
+  .route("/tareas/:id")
+  .get(tareaBuscadaDb)
+  .put(editarTareaDb)
+  .delete(borrarTareaDb)
 
 export default router;
