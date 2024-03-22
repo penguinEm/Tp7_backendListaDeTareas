@@ -72,7 +72,7 @@ export const borrarTareaDb = async (req, res) => {
         .json({ mensaje: "No existe la tarea que trata de borrar" });
     }
     await Tarea.findByIdAndDelete(req.params.id);
-    res.status(200).json({ mensaje: "Tarea borrada correctamente" });
+    res.status(200).json({ mensaje: "Tarea editada correctamente" });
   } catch (error) {
     console.error(error);
     res.status(500).json({
