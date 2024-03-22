@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator";
 import Tarea from "../database/model/modelTarea.js";
 
 //! GET de todas las tareas
@@ -14,6 +15,12 @@ export const listarTareasDb = async (req, res) => {
 //! POST crear tareas
 export const crearTareaDb = async (req, res) => {
   try {
+    //validacion xpress
+    const errors = validationResult(req);
+    if (errors.isEmpty() === false) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    //logica para crear
     const tareaNueva = new Tarea(req.body);
     await tareaNueva.save();
     res.status(201).json({
@@ -46,6 +53,12 @@ export const tareaBuscadaDb = async (req, res) => {
 //! PUT edit de 1 tarea por id
 export const editarTareaDb = async (req, res) => {
   try {
+    //validando con xpres
+    const errors = validationResult(req);
+    if (errors.isEmpty() === false) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    //logica para editar por id
     const tareaBuscadaDb = await Tarea.findById(req.params.id);
     if (tareaBuscadaDb === null) {
       return res
