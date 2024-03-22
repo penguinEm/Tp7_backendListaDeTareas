@@ -26,7 +26,7 @@ export const crearTareaDb = async (req, res) => {
 };
 
 //! GET de 1 tarea buscada por id
-export const tareaBuscadaDb = async (req, res, id) => {
+export const tareaBuscadaDb = async (req, res) => {
   try {
     const tareaBuscada = await Tarea.findById(req.params.id);
     if (tareaBuscada === null) {
@@ -40,5 +40,24 @@ export const tareaBuscadaDb = async (req, res, id) => {
     res
       .status(400)
       .json({ mensaje: "No se pudo encontrar solicitado, id incorrecto" });
+  }
+};
+
+//! PUT edit de 1 tarea por id
+export const editarTareaDb = async (req, res) => {
+  try {
+    const tareaBuscadaDb = await Tarea.findById(req.params.id);
+    if (tareaBuscadaDb === null) {
+      return res
+        .status(404)
+        .json({ mensaje: "No se encontro la tarea que trata de editar" });
+    }
+    await Tarea.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({ mensaje: "Tarea editada correctamente" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      mensaje: "Error inesperado no se pudo editar el producto",
+    });
   }
 };
