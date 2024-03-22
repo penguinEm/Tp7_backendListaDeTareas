@@ -6,7 +6,7 @@ Este proyecto consiste en un backend para la práctica de un CRUD de tareas. Uti
 
 Puedes ver una demostración del proyecto en el siguiente enlace: [Demo](https://lista-tareas-c76i.netlify.app/)
 
-
+![alt text](1.png)
 
 ## Dependencias Utilizadas
 
